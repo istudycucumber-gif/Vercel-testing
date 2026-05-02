@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum Effort | Deadpool Fan Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Comic book halftone pattern background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #333 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 50%, #8B0000 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-bottom: 8px solid #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '💥';
+            position: absolute;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite;
+            top: 20%;
+            left: 10%;
+        }
+
+        header::before {
+            content: '🔪';
+            position: absolute;
+            font-size: 3rem;
+            animation: float 3s ease-in-out infinite 1.5s;
+            top: 20%;
+            right: 10%;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 4px 4px 0 #000, -2px -2px 0 #000;
+            letter-spacing: 4px;
+            transform: rotate(-2deg);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #ffcccc;
+            font-style: italic;
+            text-shadow: 2px 2px 0 #000;
+        }
+
+        /* Navigation */
+        nav {
+            background: #000;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 4px solid #DC143C;
+        }
+
+        nav a {
+            color: #DC143C;
+            text-decoration: none;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            margin: 0 1.5rem;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: #fff;
+            transform: scale(1.2) rotate(-5deg);
+            text-shadow: 0 0 10px #DC143C;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Comic panels */
+        .comic-panel {
+            background: #fff;
+            color: #000;
+            border: 4px solid #000;
+            box-shadow: 8px 8px 0 #DC143C;
+            margin: 2rem 0;
+            padding: 2rem;
+            position: relative;
+            transform: rotate(-1deg);
+            transition: transform 0.3s;
+        }
+
+        .comic-panel:nth-child(even) {
+            transform: rotate(1deg);
+            box-shadow: -8px 8px 0 #DC143C;
+        }
+
+        .comic-panel:hover {
+            transform: rotate(0deg) scale(1.02);
+            z-index: 10;
+        }
+
+        .comic-panel h2 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            color: #DC143C;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 0 #000;
+            border-bottom: 3px solid #000;
+            padding-bottom: 0.5rem;
+        }
+
+        .comic-panel p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        /* Deadpool mask icon made with CSS */
+        .mask-icon {
+            width: 120px;
+            height: 150px;
+            background: #DC143C;
+            border-radius: 50% 50% 45% 45%;
+            position: relative;
+            margin: 0 auto 1rem;
+            border: 4px solid #000;
+            box-shadow: inset -10px -10px 0 rgba(0,0,0,0.2);
+        }
+
+        .mask-icon::before,
+        .mask-icon::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 45px;
+            background: #000;
+            border-radius: 50%;
+            top: 45px;
+            border: 3px solid #fff;
+        }
+
+        .mask-icon::before {
+            left: 20px;
+            transform: rotate(-15deg);
+        }
+
+        .mask-icon::after {
+            right: 20px;
+            transform: rotate(15deg);
+        }
+
+        /* Quote generator */
+        .quote-box {
+            background: #000;
+            color: #DC143C;
+            padding: 2rem;
+            border: 4px solid #DC143C;
+            text-align: center;
+            font-family: 'Bangers', cursive;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            color: #DC143C;
+            opacity: 0.5;
+        }
+
+        button {
+            background: #DC143C;
+            color: #fff;
+            border: 4px solid #000;
+            padding: 1rem 2rem;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0 #000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            background: #ff1a1a;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 #000;
+        }
+
+        button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #000;
+        }
+
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-card {
+            background: #DC143C;
+            color: #fff;
+            padding: 1.5rem;
+            border: 4px solid #000;
+            text-align: center;
+            box-shadow: 4px 4px 0 #000;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) rotate(2deg);
+        }
+
+        .stat-card .number {
+            font-family: 'Bangers', cursive;
+            font-size: 3rem;
+            display: block;
+        }
+
+        .stat-card .label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            text-align: center;
+            padding: 2rem;
+            border-top: 8px solid #DC143C;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        footer .disclaimer {
+            color: #DC143C;
+            font-family: 'Bangers', cursive;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .comic-panel { padding: 1rem; }
+            nav a { margin: 0 0.5rem; font-size: 1rem; }
+        }
+
+        /* Explosion animation */
+        @keyframes explode {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        .explosion {
+            position: fixed;
+            pointer-events: none;
+            font-size: 3rem;
+            animation: explode 0.8s ease-out forwards;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DEADPOOL</h1>
+        <p class="subtitle">The Merc with a Mouth • Chimichanga Enthusiast • Fourth-Wall Breaker</p>
+    </header>
+
+    <nav>
+        <a href="#about">Origin</a>
+        <a href="#quotes">Wisdom</a>
+        <a href="#stats">Stats</a>
+        <a href="#footer">Fine Print</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- About Section -->
+        <section id="about" class="comic-panel">
+            <div class="mask-icon"></div>
+            <h2>The Man, The Myth, The Regenerating Degenerate</h2>
+            <p>
+                Wade Wilson. Former special forces operative. Current mercenary. Future corpse (temporarily). 
+                After a shady experiment left him horribly scarred but gifted with a healing factor that would 
+                make Wolverine jealous, Wade embraced his new identity as <strong>Deadpool</strong>.
+            </p>
+            <p>
+                He's been known to talk to the audience, make inappropriate jokes at funerals, and consume 
+                an alarming number of chimichangas. He fights bad guys, occasionally good guys, and frequently 
+                his own common sense.
+            </p>
+            <p style="font-style: italic; color: #DC143C; font-weight: bold;">
+                "Hey, did you know you can scroll down? No, seriously, this isn't a static image. Move it!"
+            </p>
+        </section>
+
+        <!-- Quote Generator -->
+        <section id="quotes" class="comic-panel">
+            <h2>Words of Wisdom</h2>
+            <div class="quote-box" id="quoteDisplay">
+                Click the button for maximum wisdom. Or minimum. It's really a coin toss.
+            </div>
+            <div style="text-align: center;">
+                <button onclick="newQuote()">🌮 New Quote 🌮</button>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section id="stats" class="comic-panel">
+            <h2>Character Sheet</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="number">∞</span>
+                    <span class="label">Sarcasm Level</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">42</span>
+                    <span class="label">Chimichangas / Day</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">100%</span>
+                    <span class="label">Healing Factor</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">0</span>
+                    <span class="label">Chill Given</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trivia -->
+        <section class="comic-panel">
+            <h2>Fun Facts</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.5rem 0; border-bottom: 2px dashed #ccc;">🎭 Created by Rob Liefeld and Fabian Nicieza in 1991</li>
+                <li style="padding: 0.5rem 0; border-bottom: 2px dashed #ccc;">🎬 Ryan Reynolds was literally born to play this role</li>
+                <li style="padding: 0.5rem 0; border-bottom: 2px dashed #ccc;">🌮 Chimichangas are just deep-fried burritos, but saying "chimichanga" is way more fun</li>
+                <li style="padding: 0.5rem 0; border-bottom: 2px dashed #ccc;">💀 He once killed the entire Marvel Universe. It was a weird Tuesday.</li>
+                <li style="padding: 0.5rem 0;">🦄 He has a soft spot for unicorns, Bea Arthur, and Hello Kitty</li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer id="footer">
+        <p>This is a fan-made page. Not affiliated with Marvel, Disney, or any organization with actual lawyers.</p>
+        <p class="disclaimer">"Maximum Effort!"</p>
+        <p style="margin-top: 1rem; font-size: 0.8rem; color: #444;">&copy; 2026 | Built with questionable judgment and excessive red</p>
+    </footer>
+
+    <script>
+        const quotes = [
+            "Maximum effort!",
+            "Chimichangas!",
+            "Did I leave the stove on?",
+            "I'm touching myself tonight.",
+            "You have something in your teeth. Just kidding. Or am I?",
+            "Fourth wall? What fourth wall?",
+            "Looks are everything! Never mind. I'm a monster.",
+            "Superhero landing! She's going to do a superhero landing!",
+            "Daddy needs to express some rage.",
+            "You're probably wondering why the red suit. It's so bad guys can't see me bleed.",
+            "I want to die a natural death at the age of 102—like the city of Detroit.",
+            "Please don't make the supersuit green. Or animated!",
+            "A fourth-wall break inside a fourth-wall break? That's like... sixteen walls!",
+            "Love is a beautiful thing. When you find it, the whole world tastes like Daffodil Daydream.",
+            "I never say this, but don't swallow."
+        ];
+
+        function newQuote() {
+            const display = document.getElementById('quoteDisplay');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            display.style.opacity = '0';
+            setTimeout(() => {
+                display.textContent = randomQuote;
+                display.style.opacity = '1';
+            }, 200);
+            
+            // Create explosion effect at button position
+            createExplosion(event.clientX, event.clientY);
+        }
+
+        function createExplosion(x, y) {
+            const emojis = ['💥', '🔥', '⚡', '🌮', '💀'];
+            const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const el = document.createElement('div');
+            el.className = 'explosion';
+            el.textContent = emoji;
+            el.style.left = x + 'px';
+            el.style.top = y + 'px';
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 800);
+        }
+
+        // Random rotation on load for extra chaos
+        document.querySelectorAll('.comic-panel').forEach(panel => {
+            const randomRot = (Math.random() - 0.5) * 2;
+            panel.style.transform = `rotate(${randomRot}deg)`;
+        });
+
+        // Easter egg: click anywhere for a surprise
+        document.addEventListener('click', (e) => {
+            if (e.target.tagName !== 'BUTTON') {
+                if (Math.random() > 0.9) {
+                    createExplosion(e.clientX, e.clientY);
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
